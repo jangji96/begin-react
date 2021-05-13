@@ -2,6 +2,7 @@ import React from 'react';
 import Hello from './Hello';
 import './App.css';
 import Wrapper from './Wrapper';
+import Counter from './Counter';
 
 function App() {
   // const name = 'react'
@@ -17,10 +18,11 @@ function App() {
     //   <div style={style}>{name}</div>
     //   <div className="gray-box"></div>
     // </div>
-    <Wrapper>
-      <Hello name='react' color='red' isSpecial/>
-      <Hello color='pink'/>
-    </Wrapper>
+    // <Wrapper>
+    //   <Hello name='react' color='red' isSpecial/>
+    //   <Hello color='pink'/>
+    // </Wrapper>
+    <Counter/>
   );
 }
 
