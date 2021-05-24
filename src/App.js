@@ -71,6 +71,8 @@ function reducer(state, action) {
   }
 }
 
+export const UserDispatch = React.createContext(null);
+
 function App() {
   // const name = 'react'
   // const style = {
@@ -200,7 +202,7 @@ function App() {
   // }, []);
   // const count = useMemo(() => countActiveUsers(users), [users]);
 
-  const [{ username, email }, onChange, reset] = useInputs({
+  const [{ username, email }, onChange, onReset] = useInputs({
     username: '',
     email: ''
   });
@@ -229,23 +231,23 @@ function App() {
         email
       }
     });
-    reset();
+    onReset();
     nextId.current += 1;
-  }, [username, email, reset]);
+  }, [username, email, onReset]);
 
-  const onToggle = useCallback(id => {
-    dispatch({
-      type: 'TOGGLE_USER',
-      id
-    });
-  }, []);
+  // const onToggle = useCallback(id => {
+  //   dispatch({
+  //     type: 'TOGGLE_USER',
+  //     id
+  //   });
+  // }, []);
 
-  const onRemove = useCallback(id => {
-    dispatch({
-      type: 'REMOVE_USER',
-      id
-    });
-  }, []);
+  // const onRemove = useCallback(id => {
+  //   dispatch({
+  //     type: 'REMOVE_USER',
+  //     id
+  //   });
+  // }, []);
 
   const count = useMemo(() => countActiveUsers(users), [users]);
   return (
@@ -268,14 +270,19 @@ function App() {
           onCreate={onCreate}
         />
       <UserList users={users} onRemove={onRemove} onToggle={onToggle}/> */}
-      <CreateUser
-        username={username}
-        email={email}
-        onChange={onChange}
-        onCreate={onCreate}
-      />
-      <UserList users={users} onToggle={onToggle} onRemove={onRemove}/>
-      <div>활성사용자 수 : {count}</div>
+      <UserDispatch.Provider value={dispatch}>
+        <CreateUser
+          username={username}
+          email={email}
+          onChange={onChange}
+          onCreate={onCreate}
+          />
+        <UserList users={users}
+          // onToggle={onToggle}
+          // onRemove={onRemove}
+          />
+        <div>활성사용자 수 : {count}</div>
+      </UserDispatch.Provider>
     </>
   );
 }
