@@ -1,5 +1,5 @@
 import React, {useRef, useState, useMemo, useCallback, useReducer} from 'react';
-// import Hello from './Hello';
+import Hello from './Hello';
 // import './App.css';
 // import Wrapper from './Wrapper';
 // import Counter from './Counter';
@@ -8,6 +8,7 @@ import UserList from './UserList';
 import CreateUser from './CreateUser'
 // import useInputs from './hooks/useInputs';
 import produce from 'immer'
+import Counter from './Counter';
 
 function countActiveUsers(users) {
   console.log('활성 사용자 수를 세는중...');
